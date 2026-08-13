@@ -1,0 +1,15 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 模型权重（可重新训练得到）
+*.pth
+
+# MNIST 数据集（运行时会自动下载）
+data/
+
+# TensorBoard 日志
+runs/
+
+# IDE
+.vscode/
