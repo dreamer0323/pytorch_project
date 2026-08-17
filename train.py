@@ -31,7 +31,8 @@ def train(p):
     # 如果存在上次中断保存的检查点，则加载后继续训练
     start_epoch = 0
     if os.path.exists("checkpoint.pth"):
-        checkpoint = torch.load("checkpoint.pth", map_location=p.device)
+        # weights_only=True：只加载张量等安全类型，防止恶意文件在反序列化时执行代码
+        checkpoint = torch.load("checkpoint.pth", map_location=p.device, weights_only=True)
         my_model.load_state_dict(checkpoint["model_state_dict"])
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
         start_epoch = checkpoint["epoch"]
