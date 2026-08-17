@@ -24,6 +24,7 @@ def test(p):
         print("没有找到模型参数文件（best_model.pth / checkpoint.pth），请先运行训练：python Mnist.py train")
         return
 
+    # 加载模型参数
     my_model.load_state_dict(state_dict)
 
     # 评估模型

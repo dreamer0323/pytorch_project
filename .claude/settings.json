@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la ~/.ssh 2>/dev/null || echo \"no ~/.ssh directory\")",
+      "Read(//c/Users/31625/**)",
+      "Bash(echo \"=== ~/.bashrc 当前内容 ===\" && cat ~/.bashrc 2>/dev/null || echo \"\\(文件不存在\\)\")"
+    ]
+  }
+}
