@@ -11,9 +11,16 @@ from torch.utils import data
 
 def get_dataloaders(batch_size):
     """加载 MNIST 数据集，返回 (训练数据加载器, 测试数据加载器)"""
+    # 数据预处理：转为张量后归一化。均值/标准差为 MNIST 数据集的统计值，
+    # 将像素值从 [0,1] 映射到均值为 0、标准差为 1 的分布，加快收敛、提升训练速度
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.1307,), (0.3081,)),
+    ])
+
     # 训练集 转换为张量Tensor
-    dataset = torchvision.datasets.MNIST(root="./data",train=True,download=True,transform=transforms.ToTensor())
-    test_dataset = torchvision.datasets.MNIST(root="./data",train=False,download=True,transform=transforms.ToTensor())
+    dataset = torchvision.datasets.MNIST(root="./data",train=True,download=True,transform=transform)
+    test_dataset = torchvision.datasets.MNIST(root="./data",train=False,download=True,transform=transform)
 
     # 训练集打乱，测试集无需打乱
     dataloader = data.DataLoader(dataset,batch_size=batch_size,shuffle=True)
